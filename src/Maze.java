@@ -9,17 +9,12 @@ public class Maze {
 
     public Maze(int x, int y) {
         this.maze = new String[x][y];
-        this.mazeFields = new ArrayList<>();
-        mazeFields.add(".");
-        mazeFields.add("#");
-        mazeFields.add("S");
-        mazeFields.add("X");
+        this.createListOfMazeFields();
 
-        Random randomNumber = new Random();
-        String randomElement;
+
         for (int i = 0; i < maze.length; i++) {
             for (int j = 0; j < maze[i].length; j++) {
-                maze[i][j] = mazeFields.get(randomNumber.nextInt(mazeFields.size()));
+                maze[i][j] = randomMazeField();
             }
         }
     }
@@ -32,4 +27,23 @@ public class Maze {
             System.out.println();
         }
     }
+
+    private List createListOfMazeFields() {
+        this.mazeFields = new ArrayList<>();
+        mazeFields.add(".");
+        mazeFields.add("#");
+        mazeFields.add("S");
+        mazeFields.add("X");
+        return mazeFields;
+    }
+
+    private String randomMazeField() {
+        Random randomNumber = new Random();
+        String field = mazeFields.get(randomNumber.nextInt(mazeFields.size()));
+        if(field.equals("X")|| field.equals("S")){
+            mazeFields.remove(field);
+        }
+        return field;
+    }
+
 }
