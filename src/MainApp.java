@@ -1,13 +1,11 @@
-import java.awt.*;
 
 public class MainApp {
     public static void main(String[] args) {
 
-        Maze maze= new Maze(10,10);
+        Maze maze= new Maze(5,5);
         maze.checkoutMaze();
 
-        Point point = new Point(2, 2);
-        maze.findPath(point);
+        maze.findPath(maze.getStartPoint());
 
 
 
