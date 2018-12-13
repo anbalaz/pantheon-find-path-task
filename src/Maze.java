@@ -4,17 +4,28 @@ import java.util.Random;
 
 public class Maze {
 
+    private int width;
+    private int length;
     private String[][] maze;
     private List<String> mazeFields;
+    private Random randomNumber = new Random();
+    private static final String FREE_ELEMENT = ".";
+    private static final String BLOCKED_ELEMENT = "#";
+    private static final String START_POSITION = "S";
+    private static final String TARGET_POSITION = "X";
+    private String field;
 
-    public Maze(int x, int y) {
-        this.maze = new String[x][y];
+
+    public Maze(int width, int length) {
+        this.width = width;
+        this.length = length;
+        this.maze = new String[width][length];
         this.createListOfMazeFields();
 
 
         for (int i = 0; i < maze.length; i++) {
             for (int j = 0; j < maze[i].length; j++) {
-                maze[i][j] = randomMazeField();
+                maze[i][j] = randomMazeObstaclesFreeField();
             }
         }
     }
@@ -37,11 +48,18 @@ public class Maze {
         return mazeFields;
     }
 
-    private String randomMazeField() {
-        Random randomNumber = new Random();
-        String field = mazeFields.get(randomNumber.nextInt(mazeFields.size()));
-        if(field.equals("X")|| field.equals("S")){
-            mazeFields.remove(field);
+    private void randomMazeField() {
+
+        maze[randomNumber.nextInt(width)][randomNumber.nextInt(length)] = START_POSITION;
+        maze[randomNumber.nextInt(width)][randomNumber.nextInt(length)] = TARGET_POSITION;
+
+    }
+
+    private String randomMazeObstaclesFreeField() {
+        if (randomNumber.nextInt(10) < 9) {
+            field = FREE_ELEMENT;
+        } else {
+            field = BLOCKED_ELEMENT;
         }
         return field;
     }
