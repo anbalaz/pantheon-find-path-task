@@ -1,5 +1,5 @@
+import java.awt.*;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 public class Maze {
@@ -60,6 +60,41 @@ public class Maze {
             field = BLOCKED_ELEMENT;
         }
         return field;
+    }
+
+    public ArrayList<Point> getPossiblePositions(Point point) {
+        int x = point.x;
+        int y = point.y;
+
+        ArrayList<Point> points = new ArrayList<Point>();
+
+        points.add(new Point(x + 1, y));
+        points.add(new Point(x - 1, y));
+        points.add(new Point(x, y + 1));
+        points.add(new Point(x, y - 1));
+
+        for (int i = 0; i < points.size(); i++) {
+            Point currPoint = points.get(i);
+
+            if (currPoint.x < 0 || currPoint.x > width || currPoint.y < 0 || currPoint.y > length) {
+                points.remove(currPoint);
+                i--;
+            }
+            for (Point pint : points) {
+                System.out.println(pint);
+            }
+            System.out.println();
+        }
+        return points;
+    }
+
+    public void findPath() {
+
+
+    }
+
+    public void solvedPath() {
+
     }
 
 }
