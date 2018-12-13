@@ -20,7 +20,7 @@ public class Maze {
     private static final String START_POSITION = "S";
     private static final String TARGET_POSITION = "X";
 
-    private ArrayList<String> pathDirectionString;
+    private ArrayList<String> pathDirectionString = new ArrayList<>();
 
 
     public Maze(int width, int length) {
@@ -40,7 +40,7 @@ public class Maze {
             }
         }
 
-        this.startPoint=this.randomStartFinishPoint(START_POSITION, TARGET_POSITION);
+        this.startPoint = this.randomStartFinishPoint(START_POSITION, TARGET_POSITION);
         this.randomStartFinishPoint(TARGET_POSITION, START_POSITION);
     }
 
@@ -51,13 +51,12 @@ public class Maze {
             }
             System.out.println();
         }
-        for (int i = 0; i < usedPoints.length; i++) {
-            for (int j = 0; j < usedPoints[i].length; j++) {
+        for (int i = 0; i < maze.length; i++) {
+            for (int j = 0; j < maze[i].length; j++) {
                 System.out.print(usedPoints[i][j] + "\t");
             }
             System.out.println();
         }
-
     }
 
     private Point randomStartFinishPoint(String insertField, String otherField) {
@@ -70,12 +69,13 @@ public class Maze {
         }
         while (maze[randomX][randomY].equals(otherField));
         maze[randomX][randomY] = insertField;
-        return new Point(randomX,randomY);
+        usedPoints[randomX][randomY]=false;
+        return new Point(randomX, randomY);
     }
 
     private String randomMazeObstaclesFreeField() {
         String field;
-        if (mazeRandomizer.nextInt(10) < 9) {
+        if (mazeRandomizer.nextInt(10) < 5) {
             field = FREE_ELEMENT;
         } else {
             field = BLOCKED_ELEMENT;
@@ -87,12 +87,12 @@ public class Maze {
         int x = point.x;
         int y = point.y;
 
-        ArrayList<Point> points = new ArrayList<Point>();
+        ArrayList<Point> points = new ArrayList<>();
 
-        points.add(new Point(x + 1, y));//d
-        points.add(new Point(x - 1, y));//u
-        points.add(new Point(x, y + 1));//r
-        points.add(new Point(x, y - 1));//l
+        points.add(new Point(x + 1, y));
+        points.add(new Point(x - 1, y));
+        points.add(new Point(x, y + 1));
+        points.add(new Point(x, y - 1));
 
         for (int i = 0; i < points.size(); i++) {
             Point currPoint = points.get(i);
@@ -101,10 +101,6 @@ public class Maze {
                 points.remove(currPoint);
                 i--;
             }
-//            for (Point pint : points) {
-//                System.out.println(pint);
-//            }
-//            System.out.println();
         }
         return points;
     }
@@ -115,36 +111,49 @@ public class Maze {
 
         if (isPathSolved(sourcePoint)) {
             System.out.println();
-            System.out.println("dobra praca");
-            this.checkoutMaze();
-
+            for (String a : pathDirectionString) {
+                System.out.print(a + ",");
+            }
+            System.out.println();
         }
-
         ArrayList<Point> possiblePositions = getPossiblePositions(sourcePoint);
 
         if (!possiblePositions.isEmpty()) {
             for (int i = 0; i < possiblePositions.size(); i++) {
                 Point movePoint = possiblePositions.get(i);
-//                System.out.println("---------------------------------");
-//                System.out.println(movePoint);
-//                System.out.println("---------------------------------");
+                this.pathDirectionString.add(this.direction(sourcePoint, movePoint));
                 this.findPath(movePoint);
             }
         }
         usedPoints[sourcePoint.x][sourcePoint.y] = false;
+        if (!pathDirectionString.isEmpty()) {
+            this.pathDirectionString.remove(this.pathDirectionString.size() - 1);
+        }
         return;
     }
 
     public boolean isPathSolved(Point sourcePoint) {
         if (maze[sourcePoint.x][sourcePoint.y].equals(TARGET_POSITION)) {
-            System.out.println(sourcePoint);
             return true;
         }
         return false;
     }
-    public String direction(){
 
-        return null;
+    public String direction(Point sourcePoint, Point movePoint) {
+        String direction;
+        if (subtract(sourcePoint, movePoint).equals(new Point(1, 0))) {
+            direction = "u";
+        } else if (subtract(sourcePoint, movePoint).equals(new Point(-1, 0))) {
+            direction = "d";
+        } else if (subtract(sourcePoint, movePoint).equals(new Point(0, +1))) {
+            direction = "l";
+        } else {
+            direction = "r";
+        }
+        return direction;
     }
 
+    public Point subtract(Point sourcePoint, Point movePoint) {
+        return new Point(sourcePoint.x - movePoint.x, sourcePoint.y - movePoint.y);
+    }
 }
