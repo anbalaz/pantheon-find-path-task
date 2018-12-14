@@ -21,20 +21,19 @@ public class MazeResolver {
         maze.mazeInitializer();
         maze.printOutMaze();
         this.findPath(maze.getStartPoint());
-
         this.solutionAnswer();
         this.shortestPath();
     }
 
-    public void solutionAnswer() {
+    private void solutionAnswer() {
         if (allPossiblePaths.isEmpty()) {
             System.out.println("Error, there is no possible path in this maze!");
         } else {
-            System.out.println("Shortest path/s is/are:");
+            System.out.println("\nShortest path/s is/are:");
         }
     }
 
-    public void shortestPath() {
+    private void shortestPath() {
         if (!allPossiblePaths.isEmpty()) {
             sortListByLength();
             for (int i = 0; i < allPossiblePaths.size(); i++) {
@@ -49,7 +48,7 @@ public class MazeResolver {
         }
     }
 
-    public void findPath(Point sourcePoint) {
+    private void findPath(Point sourcePoint) {
         maze.getUsedPoints()[sourcePoint.x][sourcePoint.y] = true;
 
         if (this.isPathSolved(maze, sourcePoint)) {

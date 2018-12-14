@@ -2,6 +2,11 @@ import java.awt.*;
 
 public class PathToString {
 
+    private static final String DIRECTION_LEFT = "l";
+    private static final String DIRECTION_RIGHT = "r";
+    private static final String DIRECTION_UP = "u";
+    private static final String DIRECTION_DOWN = "d";
+
 
     public String directionResolver(Point sourcePoint, Point movePoint) {
         String direction;
@@ -9,16 +14,16 @@ public class PathToString {
 
         if (subtractPoint.x == 0) {
             if (subtractPoint.y == 1) {
-                direction = "l";
+                direction = DIRECTION_LEFT;
             } else {
-                direction = "r";
+                direction = DIRECTION_RIGHT;
             }
 
         } else {
             if (subtractPoint.x == 1) {
-                direction = "u";
+                direction = DIRECTION_UP;
             } else {
-                direction = "d";
+                direction = DIRECTION_DOWN;
             }
         }
 
