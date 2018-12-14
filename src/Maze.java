@@ -15,13 +15,6 @@ public class Maze {
     private static final String START_POSITION = "S";
     public static final String TARGET_POSITION = "X";
 
-    public void setWidth(int width) {
-        this.width = width;
-    }
-
-    public void setLength(int length) {
-        this.length = length;
-    }
 
     public int getWidth() {
         return width;
@@ -39,21 +32,18 @@ public class Maze {
         return maze;
     }
 
-    public static String getTargetPosition() {
-        return TARGET_POSITION;
-    }
-
     public Point getStartPoint() {
         return startPoint;
     }
 
-
-    public void mazeInitializer(int width, int length) {
+    public Maze(int width, int length) {
         this.width = width;
         this.length = length;
         this.maze = new String[width][length];
         this.usedPoints = new boolean[width][length];
+    }
 
+    public void mazeInitializer() {
         for (int i = 0; i < maze.length; i++) {
             for (int j = 0; j < maze[i].length; j++) {
                 maze[i][j] = randomMazeObstaclesAndFreeField();
@@ -64,7 +54,6 @@ public class Maze {
                 }
             }
         }
-
         this.startPoint = this.randomStartFinishPoint(START_POSITION, TARGET_POSITION);
         this.randomStartFinishPoint(TARGET_POSITION, START_POSITION);
     }
@@ -78,7 +67,7 @@ public class Maze {
         }
     }
 
-    private Point randomStartFinishPoint(String fieldToInsert, String fieldToAvoid) {
+    private Point randomStartFinishPoint(String startPosition, String targetPosition) {
         int randomX = -1;
         int randomY = -1;
 
@@ -86,15 +75,18 @@ public class Maze {
             randomX = mazeRandomizer.nextInt(width);
             randomY = mazeRandomizer.nextInt(length);
         }
-        while (maze[randomX][randomY].equals(fieldToAvoid));
-        maze[randomX][randomY] = fieldToInsert;
+
+        while (maze[randomX][randomY].equals(targetPosition));
+
+        maze[randomX][randomY] = startPosition;
         usedPoints[randomX][randomY] = false;
+
         return new Point(randomX, randomY);
     }
 
     private String randomMazeObstaclesAndFreeField() {
         String field;
-        if (mazeRandomizer.nextInt(10) < 4) {
+        if (mazeRandomizer.nextInt(10) < 8) {
             field = FREE_ELEMENT;
         } else {
             field = BLOCKED_ELEMENT;

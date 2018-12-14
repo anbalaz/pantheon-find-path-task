@@ -1,6 +1,6 @@
 import java.awt.*;
 
-public class PathResolver {
+public class PathToString {
 
 
     public String directionResolver(Point sourcePoint, Point movePoint) {
@@ -13,6 +13,7 @@ public class PathResolver {
             } else {
                 direction = "r";
             }
+
         } else {
             if (subtractPoint.x == 1) {
                 direction = "u";
@@ -20,17 +21,13 @@ public class PathResolver {
                 direction = "d";
             }
         }
+
         return direction;
     }
 
-    public Point subtract(Point sourcePoint, Point movePoint) {
+    private Point subtract(Point sourcePoint, Point movePoint) {
         return new Point(sourcePoint.x - movePoint.x, sourcePoint.y - movePoint.y);
     }
 
-    public boolean isPathSolved(Maze maze, Point sourcePoint) {
-        if (maze.getMaze()[sourcePoint.x][sourcePoint.y].equals(Maze.TARGET_POSITION)) {
-            return true;
-        }
-        return false;
-    }
+
 }

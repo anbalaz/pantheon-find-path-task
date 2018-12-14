@@ -3,8 +3,7 @@ import java.util.ArrayList;
 
 public class PositionsToMove {
 
-
-    public ArrayList<Point> getPossiblePositions(Maze maze, Point point) {
+    public static ArrayList<Point> getPossiblePositions(Maze maze, Point point) {
         int x = point.x;
         int y = point.y;
 

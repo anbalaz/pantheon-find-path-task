@@ -1,2 +1,2 @@
 # pantheon-find-path-task
-Find PathResolver
+Find PathToString
