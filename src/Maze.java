@@ -43,6 +43,10 @@ public class Maze {
         this.usedPoints = new boolean[width][length];
     }
 
+    /**
+     * This method is giving maze array[][] string values randomly, and also usedPoints array[][] is given booleans,
+     * which are depending on string values.
+     */
     public void mazeInitializer() {
         for (int i = 0; i < maze.length; i++) {
             for (int j = 0; j < maze[i].length; j++) {
@@ -66,6 +70,9 @@ public class Maze {
         }
     }
 
+    /**
+     * This method is randomly giving Start and finish position to maze array.
+     */
     private void randomStartFinishPoint(String startPosition, String targetPosition) {
         int randomStartX = -1;
         int randomStartY = -1;
@@ -90,6 +97,9 @@ public class Maze {
 
     }
 
+    /**
+     * This method is randomly giving 2 string constants.
+     */
     private String randomMazeObstaclesAndFreeField() {
         String field;
         if (mazeRandomizer.nextInt(10) < 7) {

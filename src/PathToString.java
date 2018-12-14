@@ -1,5 +1,8 @@
 import java.awt.*;
 
+/**
+ * This class changes pointers through subtraction to strings.
+ */
 public class PathToString {
 
     private static final String DIRECTION_LEFT = "l";

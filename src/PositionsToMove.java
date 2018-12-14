@@ -2,7 +2,9 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class PositionsToMove {
-
+    /**
+     * This method looks for every possible moves from Point where it is currently pointing.
+     */
     public static ArrayList<Point> getPossiblePositions(Maze maze, Point point) {
         int x = point.x;
         int y = point.y;
