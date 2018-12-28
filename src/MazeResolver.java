@@ -21,8 +21,8 @@ public class MazeResolver {
      * This method runs whole maze solution from creating maze, through find paths and printing them out.
      */
     public void runTheMaze() {
-        maze.mazeInitializer();
-        maze.printOutMaze();
+        maze.generateRandomly();
+        maze.print();
         this.findPath(maze.getStartPoint());
         this.printOutErrorAndShortestPath();
         this.printOutShortestPath();

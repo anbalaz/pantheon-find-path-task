@@ -47,10 +47,10 @@ public class Maze {
      * This method is giving maze array[][] string values randomly, and also usedPoints array[][] is given booleans,
      * which are depending on string values.
      */
-    public void mazeInitializer() {
+    public void generateRandomly() {
         for (int i = 0; i < maze.length; i++) {
             for (int j = 0; j < maze[i].length; j++) {
-                maze[i][j] = randomMazeObstaclesAndFreeField();
+                maze[i][j] = randomObstacleOrFreeField();
                 if (maze[i][j] == BLOCKED_ELEMENT) {
                     usedPoints[i][j] = true;
                 } else {
@@ -61,7 +61,7 @@ public class Maze {
         this.randomStartFinishPoint(START_POSITION, TARGET_POSITION);
     }
 
-    public void printOutMaze() {
+    public void print() {
         for (int i = 0; i < maze.length; i++) {
             for (int j = 0; j < maze[i].length; j++) {
                 System.out.print(maze[i][j] + "\t");
@@ -84,9 +84,7 @@ public class Maze {
             randomStartY = mazeRandomizer.nextInt(length);
             randomTargetX = mazeRandomizer.nextInt(width);
             randomTargetY = mazeRandomizer.nextInt(length);
-        }
-
-        while (maze[randomStartX][randomStartY] == (maze[randomTargetX][randomTargetY]));
+        }while (maze[randomStartX][randomStartY] == (maze[randomTargetX][randomTargetY]));
 
         maze[randomStartX][randomStartY] = startPosition;
         maze[randomTargetX][randomTargetY] = targetPosition;
@@ -99,7 +97,7 @@ public class Maze {
     /**
      * This method is randomly giving 2 string constants.
      */
-    private char randomMazeObstaclesAndFreeField() {
+    private char randomObstacleOrFreeField() {
         char field;
         if (mazeRandomizer.nextInt(10) < 7) {
             field = FREE_ELEMENT;
