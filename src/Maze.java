@@ -94,7 +94,6 @@ public class Maze {
         this.startPoint = new Point(randomStartX, randomStartY);
         usedPoints[randomStartX][randomStartY] = false;
         usedPoints[randomTargetX][randomTargetY] = false;
-
     }
 
     /**

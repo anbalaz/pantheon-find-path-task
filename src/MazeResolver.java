@@ -11,23 +11,23 @@ public class MazeResolver {
 
 
     public MazeResolver(int width, int length) {
-
         this.pathDirectionString = new ArrayList<>();
         this.allPossiblePaths = new ArrayList<>();
         this.pathResolver = new PathToString();
         this.maze = new Maze(width, length);
     }
+
     /**
      *This method runs whole maze solution from creating maze, through find paths and printing them out.
      */
     public void runTheMaze() {
-
         maze.mazeInitializer();
         maze.printOutMaze();
         this.findPath(maze.getStartPoint());
         this.printOutErrorAndShortestPath();
         this.printOutShortestPath();
     }
+
     /**
      *This method printOut to console error message if there is no path or beginning sentence for Shortest path.
      */
@@ -53,6 +53,7 @@ public class MazeResolver {
 
         }
     }
+
     /**
      *This method via recursion is looking for every possible paths from start to finish.
      */
