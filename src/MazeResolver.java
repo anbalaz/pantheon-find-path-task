@@ -18,7 +18,7 @@ public class MazeResolver {
     }
 
     /**
-     *This method runs whole maze solution from creating maze, through find paths and printing them out.
+     * This method runs whole maze solution from creating maze, through find paths and printing them out.
      */
     public void runTheMaze() {
         maze.mazeInitializer();
@@ -29,7 +29,7 @@ public class MazeResolver {
     }
 
     /**
-     *This method printOut to console error message if there is no path or beginning sentence for Shortest path.
+     * This method printOut to console error message if there is no path or beginning sentence for Shortest path.
      */
     private void printOutErrorAndShortestPath() {
         if (allPossiblePaths.isEmpty()) {
@@ -55,7 +55,7 @@ public class MazeResolver {
     }
 
     /**
-     *This method via recursion is looking for every possible paths from start to finish.
+     * This method via recursion is looking for every possible paths from start to finish.
      */
     private void findPath(Point sourcePoint) {
         maze.getUsedPoints()[sourcePoint.x][sourcePoint.y] = true;
@@ -97,7 +97,7 @@ public class MazeResolver {
      * This method is checking if we did find TARGET_POSITION=finish.
      */
     private boolean isPathSolved(Maze maze, Point sourcePoint) {
-        if (maze.getMaze()[sourcePoint.x][sourcePoint.y].equals(Maze.TARGET_POSITION)) {
+        if (maze.getMaze()[sourcePoint.x][sourcePoint.y] == Maze.TARGET_POSITION) {
             return true;
         }
         return false;
