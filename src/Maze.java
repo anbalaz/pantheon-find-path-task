@@ -62,9 +62,9 @@ public class Maze {
     }
 
     public void print() {
-        for (int i = 0; i < maze.length; i++) {
-            for (int j = 0; j < maze[i].length; j++) {
-                System.out.print(maze[i][j] + "\t");
+        for (char[] fields : maze) {
+            for (char field : fields) {
+                System.out.print(field + "\t");
             }
             System.out.println();
         }
@@ -84,7 +84,7 @@ public class Maze {
             randomStartY = mazeRandomizer.nextInt(length);
             randomTargetX = mazeRandomizer.nextInt(width);
             randomTargetY = mazeRandomizer.nextInt(length);
-        }while (maze[randomStartX][randomStartY] == (maze[randomTargetX][randomTargetY]));
+        } while (maze[randomStartX][randomStartY] == (maze[randomTargetX][randomTargetY]));
 
         maze[randomStartX][randomStartY] = startPosition;
         maze[randomTargetX][randomTargetY] = targetPosition;
