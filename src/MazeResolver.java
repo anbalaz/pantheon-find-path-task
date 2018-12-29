@@ -1,5 +1,6 @@
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Comparator;
 
 public class MazeResolver {
 
@@ -82,15 +83,7 @@ public class MazeResolver {
     }
 
     private void sortListOfPossiblePathsByLength() {
-        allPossiblePaths.sort((path1, path2) -> {
-            int returnVal = 0;
-            if (path1.size() < path2.size()) {
-                returnVal = -1;
-            } else if (path1.size() > path2.size()) {
-                returnVal = 1;
-            }
-            return returnVal;
-        });
+        allPossiblePaths.sort(Comparator.comparingInt(ArrayList::size));
     }
 
     /**
