@@ -1,6 +1,9 @@
+import lombok.Getter;
+
 import java.awt.*;
 import java.util.Random;
 
+@Getter
 public class Maze {
 
     private int width;
@@ -15,26 +18,6 @@ public class Maze {
     private static final char START_POSITION = 'S';
     public static final char TARGET_POSITION = 'X';
 
-
-    public int getWidth() {
-        return width;
-    }
-
-    public int getLength() {
-        return length;
-    }
-
-    public boolean[][] getUsedPoints() {
-        return usedPoints;
-    }
-
-    public char[][] getMaze() {
-        return maze;
-    }
-
-    public Point getStartPoint() {
-        return startPoint;
-    }
 
     public Maze(int width, int length) {
         this.width = width;
