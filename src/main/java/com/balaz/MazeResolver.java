@@ -100,9 +100,7 @@ public class MazeResolver {
 
     private void printOutPathDirectionString() {
         System.out.println();
-        for (String a : pathDirectionString) {
-            System.out.print(a + ",");
-        }
+        pathDirectionString.forEach((pathDirection) -> System.out.print(pathDirection + ","));
         System.out.println();
     }
 }
