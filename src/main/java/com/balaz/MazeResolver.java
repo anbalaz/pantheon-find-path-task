@@ -1,3 +1,5 @@
+package com.balaz;
+
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Comparator;

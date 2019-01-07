@@ -1,2 +1,2 @@
 # pantheon-find-path-task
-Find PathToString
+Find com.balaz.PathToString

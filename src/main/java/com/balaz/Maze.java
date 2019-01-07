@@ -1,3 +1,5 @@
+package com.balaz;
+
 import lombok.Getter;
 
 import java.awt.*;

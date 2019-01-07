@@ -1,3 +1,5 @@
+package com.balaz;
+
 import java.awt.*;
 
 /**
