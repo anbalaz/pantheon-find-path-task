@@ -36,11 +36,7 @@ public class Maze {
         for (int i = 0; i < maze.length; i++) {
             for (int j = 0; j < maze[i].length; j++) {
                 maze[i][j] = randomObstacleOrFreeField();
-                if (maze[i][j] == BLOCKED_ELEMENT) {
-                    usedPoints[i][j] = true;
-                } else {
-                    usedPoints[i][j] = false;
-                }
+                usedPoints[i][j] = (maze[i][j] == BLOCKED_ELEMENT);
             }
         }
         this.randomStartFinishPoint(START_POSITION, TARGET_POSITION);
