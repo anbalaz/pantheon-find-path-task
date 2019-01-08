@@ -45,15 +45,15 @@ public class MazeResolver {
     private void printOutShortestPath() {
         if (!allPossiblePaths.isEmpty()) {
             sortListOfPossiblePathsByLength();
-            for (int i = 0; i < allPossiblePaths.size(); i++) {
-                if (allPossiblePaths.get(0).size() == allPossiblePaths.get(i).size()) {
-                    for (String a : allPossiblePaths.get(i)) {
-                        System.out.print(a + ",");
-                    }
+
+            allPossiblePaths.forEach(possiblePath -> {
+                if (possiblePath.size() == allPossiblePaths.get(0).size()) {
+                    possiblePath.forEach(a ->
+                            System.out.print(a + ",")
+                    );
                     System.out.println();
                 }
-            }
-
+            });
         }
     }
 
@@ -70,8 +70,7 @@ public class MazeResolver {
 
         ArrayList<Point> possiblePositions = PositionsToMove.getPossiblePositions(maze, sourcePoint);
 
-        possiblePositions.forEach(possiblePosition -> {
-            Point movePoint = possiblePosition;
+        possiblePositions.forEach(movePoint -> {
             this.pathDirectionString.add(pathResolver.directionResolver(sourcePoint, movePoint));
             this.findPath(movePoint);
         });
@@ -90,10 +89,8 @@ public class MazeResolver {
      * This method is checking if we did find TARGET_POSITION=finish.
      */
     private boolean isPathSolved(Maze maze, Point sourcePoint) {
-        if (maze.getMaze()[sourcePoint.x][sourcePoint.y] == Maze.TARGET_POSITION) {
-            return true;
-        }
-        return false;
+
+        return (maze.getMaze()[sourcePoint.x][sourcePoint.y] == Maze.TARGET_POSITION);
     }
 
     private void printOutPathDirectionString() {
