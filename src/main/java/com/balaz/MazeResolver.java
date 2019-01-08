@@ -70,13 +70,11 @@ public class MazeResolver {
 
         ArrayList<Point> possiblePositions = PositionsToMove.getPossiblePositions(maze, sourcePoint);
 
-        if (!possiblePositions.isEmpty()) {
-            for (int i = 0; i < possiblePositions.size(); i++) {
-                Point movePoint = possiblePositions.get(i);
-                this.pathDirectionString.add(pathResolver.directionResolver(sourcePoint, movePoint));
-                this.findPath(movePoint);
-            }
-        }
+        possiblePositions.forEach(possiblePosition -> {
+            Point movePoint = possiblePosition;
+            this.pathDirectionString.add(pathResolver.directionResolver(sourcePoint, movePoint));
+            this.findPath(movePoint);
+        });
 
         maze.getUsedPoints()[sourcePoint.x][sourcePoint.y] = false;
         if (!pathDirectionString.isEmpty()) {
@@ -100,7 +98,9 @@ public class MazeResolver {
 
     private void printOutPathDirectionString() {
         System.out.println();
+
         pathDirectionString.forEach((pathDirection) -> System.out.print(pathDirection + ","));
+
         System.out.println();
     }
 }
