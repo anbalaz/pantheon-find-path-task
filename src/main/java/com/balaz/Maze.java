@@ -20,7 +20,6 @@ public class Maze {
     private static final char START_POSITION = 'S';
     public static final char TARGET_POSITION = 'X';
 
-
     public Maze(int width, int length) {
         this.width = width;
         this.length = length;
@@ -29,7 +28,7 @@ public class Maze {
     }
 
     /**
-     * This method is giving maze array[][] string values randomly, and also usedPoints array[][] is given booleans,
+     * Giving maze array[][] string values randomly, and also usedPoints array[][] is given booleans,
      * which are depending on string values.
      */
     public void generateRandomly() {
@@ -51,9 +50,6 @@ public class Maze {
         }
     }
 
-    /**
-     * This method is randomly giving Start and finish position to maze array.
-     */
     private void randomStartFinishPoint(char startPosition, char targetPosition) {
         int randomStartX = -1;
         int randomStartY = -1;
@@ -76,7 +72,7 @@ public class Maze {
     }
 
     /**
-     * This method is randomly giving 2 string constants.
+     * Randomly giving 2 string constants.
      */
     private char randomObstacleOrFreeField() {
         char field;
