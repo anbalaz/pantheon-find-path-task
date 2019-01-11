@@ -1,3 +1,5 @@
+package com.balaz;
+
 import java.awt.*;
 import java.util.ArrayList;
 
@@ -16,14 +18,12 @@ public class PositionsToMove {
         points.add(new Point(x, y + 1));
         points.add(new Point(x, y - 1));
 
-        for (int i = 0; i < points.size(); i++) {
-            Point currPoint = points.get(i);
+        points.removeIf(currPoint->(currPoint.x < 0 ||
+                currPoint.x > (maze.getWidth() - 1) ||
+                currPoint.y < 0 ||
+                currPoint.y > (maze.getLength() - 1) ||
+                maze.getUsedPoints()[currPoint.x][currPoint.y]));
 
-            if (currPoint.x < 0 || currPoint.x > (maze.getWidth() - 1) || currPoint.y < 0 || currPoint.y > (maze.getLength() - 1) || maze.getUsedPoints()[currPoint.x][currPoint.y]) {
-                points.remove(currPoint);
-                i--;
-            }
-        }
         return points;
     }
 }

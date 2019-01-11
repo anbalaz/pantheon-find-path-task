@@ -1,3 +1,5 @@
+package com.balaz;
+
 import java.awt.*;
 
 /**
@@ -36,6 +38,4 @@ public class PathToString {
     private Point subtract(Point sourcePoint, Point movePoint) {
         return new Point(sourcePoint.x - movePoint.x, sourcePoint.y - movePoint.y);
     }
-
-
 }
