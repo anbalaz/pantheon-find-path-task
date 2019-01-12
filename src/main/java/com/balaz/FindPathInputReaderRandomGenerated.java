@@ -48,5 +48,6 @@ public class FindPathInputReaderRandomGenerated extends AbstractFindPathInputRea
             field = MazeAllowedChar.BLOCKED_ELEMENT;
         }
         return field;
+
     }
 }
