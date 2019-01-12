@@ -5,12 +5,8 @@ import java.util.List;
 public abstract class AbstractFindPathInputReader {
 
 
-    public boolean validateLengthOfLines(List<String> mazeStrings) {
+    public boolean validateMazeInput(List<String> mazeStrings) {
         int lineLength = mazeStrings.get(0).length();
-
-        String aloowedCharsRegex = String.format("^[%s-%s-%s-%s]+$",
-                MazeAllowedChar.FREE_ELEMENT, MazeAllowedChar.BLOCKED_ELEMENT,
-                MazeAllowedChar.START_POSITION, MazeAllowedChar.TARGET_POSITION);
 
         String startPositionString = Character.toString(MazeAllowedChar.START_POSITION);
         String targetPositionString = Character.toString(MazeAllowedChar.TARGET_POSITION);
@@ -22,11 +18,13 @@ public abstract class AbstractFindPathInputReader {
             if (lineLength != line.length()) {
                 System.out.println("Uneven length of lines");
                 return false;
+
             }
 
-            if (!line.matches("aloowedCharsRegex")) {
+            if ((isSignsOutOfRange(line))) {
                 System.out.println("There have been used invalid characters");
                 return false;
+
             }
 
             if (line.contains(startPositionString)) {
@@ -37,11 +35,24 @@ public abstract class AbstractFindPathInputReader {
                 targetPositionCount++;
             }
         }
-        if (!(startPositionCount > 0 && startPositionCount < 2) && !(targetPositionCount > 0 && targetPositionCount < 2)) {
+        if (!(startPositionCount==1) || !(targetPositionCount==1)) {
+            System.out.println("There is not valid amount of start or end position");
             return false;
         }
 
         return true;
+    }
+
+    public boolean isSignsOutOfRange(String line) {
+
+        for (int i = 0; i < line.length(); i++) {
+            char lineChar = line.charAt(i);
+            if (!MazeAllowedChar.isAllowedChar(lineChar)) {
+                return true;
+            }
+        }
+        return false;
+
     }
 
 }

@@ -21,7 +21,7 @@ public class MazeResolver {
     /**
      * Runs whole maze solution from creating maze, through find paths and printing them out.
      */
-    public void runTheMaze(Maze maze) {
+    public void solveTheMaze(Maze maze) {
         maze.generateUsedPointsArray();
         maze.print();
         findPath(maze.getStartPoint(), maze);

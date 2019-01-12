@@ -61,4 +61,8 @@ public class Maze {
 
         return new Point(0, 0);
     }
+
+    public boolean isMazeInvalid() {
+        return colsCount == 0 || rowsCount == 0;
+    }
 }

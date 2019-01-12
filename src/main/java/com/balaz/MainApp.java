@@ -4,13 +4,19 @@ public class MainApp {
     public static void main(String[] args) {
 
 
-        FindPathInputReaderRandomGenerated findPathInputReaderRandomGenerated= new FindPathInputReaderRandomGenerated();
-        Maze maze= findPathInputReaderRandomGenerated.createMaze(15,5);
+        FindPathInputReaderRandomGenerated findPathInputReaderRandomGenerated = new FindPathInputReaderRandomGenerated();
+        Maze maze1 = findPathInputReaderRandomGenerated.createMaze(15, 5);
+
+
+        FindPathInputReaderFile findPathInputReaderFile = new FindPathInputReaderFile();
+        Maze maze = findPathInputReaderFile.createMaze("myFile.txt");
 
         MazeResolver mazeResolver = new MazeResolver();
-        mazeResolver.runTheMaze(maze);
 
-//        FindPathInputReaderFile findPathInputReaderFile= new FindPathInputReaderFile();
-//        findPathInputReaderFile.validateLengthOfLines(findPathInputReaderFile.readFile("myFile.txt"));
+        if (!maze.isMazeInvalid()) {
+            mazeResolver.solveTheMaze(maze);
+        }
+
     }
+
 }
