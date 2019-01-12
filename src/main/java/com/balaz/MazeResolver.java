@@ -10,23 +10,21 @@ public class MazeResolver {
     private ArrayList<ArrayList<String>> allPossiblePaths;
 
     private PathToString pathResolver;
-    private Maze maze;
 
 
-    public MazeResolver(int width, int length) {
+    public MazeResolver() {
         this.pathDirectionString = new ArrayList<>();
         this.allPossiblePaths = new ArrayList<>();
         this.pathResolver = new PathToString();
-        this.maze = new Maze(width, length);
     }
 
     /**
      * Runs whole maze solution from creating maze, through find paths and printing them out.
      */
-    public void runTheMaze() {
-        maze.generateRandomly();
+    public void runTheMaze(Maze maze) {
+        maze.generateUsedPointsArray();
         maze.print();
-        findPath(maze.getStartPoint());
+        findPath(maze.getStartPoint(), maze);
         printOutShortestPath();
     }
 
@@ -55,7 +53,7 @@ public class MazeResolver {
     /**
      * Via recursion this method is looking for every possible paths from start to finish.
      */
-    private void findPath(Point sourcePoint) {
+    private void findPath(Point sourcePoint, Maze maze) {
         maze.getUsedPoints()[sourcePoint.x][sourcePoint.y] = true;
 
         if (isPathSolved(maze, sourcePoint)) {
@@ -67,7 +65,7 @@ public class MazeResolver {
 
         possiblePositions.forEach(movePoint -> {
             pathDirectionString.add(pathResolver.directionResolver(sourcePoint, movePoint));
-            findPath(movePoint);
+            findPath(movePoint, maze);
         });
 
         if (!pathDirectionString.isEmpty()) {
@@ -84,7 +82,7 @@ public class MazeResolver {
 
     private boolean isPathSolved(Maze maze, Point sourcePoint) {
 
-        return (maze.getMaze()[sourcePoint.x][sourcePoint.y] == Maze.TARGET_POSITION);
+        return (maze.getMaze()[sourcePoint.x][sourcePoint.y] == MazeAllowedChar.TARGET_POSITION);
     }
 
     private void printOutPathDirectionString() {

@@ -19,9 +19,9 @@ public class PositionsToMove {
         points.add(new Point(x, y - 1));
 
         points.removeIf(currPoint->(currPoint.x < 0 ||
-                currPoint.x > (maze.getWidth() - 1) ||
+                currPoint.x > (maze.getRowsCount() - 1) ||
                 currPoint.y < 0 ||
-                currPoint.y > (maze.getLength() - 1) ||
+                currPoint.y > (maze.getColsCount() - 1) ||
                 maze.getUsedPoints()[currPoint.x][currPoint.y]));
 
         return points;
