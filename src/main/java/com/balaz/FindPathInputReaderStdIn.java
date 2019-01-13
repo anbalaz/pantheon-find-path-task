@@ -13,10 +13,8 @@ public class FindPathInputReaderStdIn extends AbstractFindPathInputReader {
 
     public Maze createMaze() {
 
-        System.out.println("Welcome, please enter number of rows that maze is going to have, then press enter");
+        System.out.println("Welcome to maze resolver, please enter number of rows that maze is going to have, then press enter");
         enterTheString(consoleInt());
-
-        mazeStrings.forEach(System.out::println);
 
         boolean isValidationOk = validateMazeInput(mazeStrings);
 
@@ -61,8 +59,20 @@ public class FindPathInputReaderStdIn extends AbstractFindPathInputReader {
 
 
     public void enterTheString(int numberOfRepeats) {
+        String mazeExplanationOfInput = String.format("There are couple of rules when inserting values into maze rows:\n" +
+                "1.There are allowed only 4 signs in maze: \n" +
+                "\tfree element: %s \n" +
+                "\tobstacle element: %s \n" +
+                "\tstarting position: %s \n" +
+                "\ttarget position: %s \n" +
+                "2.There has to be one and only one starting position and only one target position.\n" +
+                "3.When inserting values, please insert even number of signs into each row or the maze will not run.\n" +
+                "4.After every row, please press enter, thank you and enjoy!\n", MazeAllowedChar.FREE_ELEMENT, MazeAllowedChar.BLOCKED_ELEMENT, MazeAllowedChar.START_POSITION, MazeAllowedChar.TARGET_POSITION);
+
+        System.out.println(mazeExplanationOfInput);
+
         for (int i = 0; i < numberOfRepeats; i++) {
-            System.out.println("Please insert values for maze row, remember, you can use only this signs ., #, S, X !");
+            System.out.println("Please insert signs for the row:");
             String input = consoleString();
             mazeStrings.add(input);
         }

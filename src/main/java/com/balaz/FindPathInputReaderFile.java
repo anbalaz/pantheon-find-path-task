@@ -23,7 +23,7 @@ public class FindPathInputReaderFile extends AbstractFindPathInputReader {
             }
             mazeStrings.forEach(System.out::println);
         } catch (FileNotFoundException exception) {
-            System.out.println("The File was not found");
+            System.out.println("The File was not found, please check if you put correct name or put it in the right directory");
         }
         return mazeStrings;
     }

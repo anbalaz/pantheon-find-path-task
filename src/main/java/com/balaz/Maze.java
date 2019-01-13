@@ -33,6 +33,14 @@ public class Maze {
     }
 
     public void print() {
+        String mazeExplanation = String.format("Here is layout of the maze and meaning of signs:\n" +
+                "\tfree element: %s \n" +
+                "\tobstacle element: %s \n" +
+                "\tstarting position: %s \n" +
+                "\ttarget position: %s \n", MazeAllowedChar.FREE_ELEMENT, MazeAllowedChar.BLOCKED_ELEMENT, MazeAllowedChar.START_POSITION, MazeAllowedChar.TARGET_POSITION);
+
+        System.out.println(mazeExplanation);
+
         for (char[] fields : maze) {
             for (char field : fields) {
                 System.out.print(field + "\t");

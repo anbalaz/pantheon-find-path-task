@@ -16,13 +16,13 @@ public abstract class AbstractFindPathInputReader {
 
         for (String line : mazeStrings) {
             if (lineLength != line.length()) {
-                System.out.println("Uneven length of lines");
+                System.out.println("Error, the maze will not be generated, there has been uneven length of lines");
                 return false;
 
             }
 
             if ((isSignsOutOfRange(line))) {
-                System.out.println("There have been used invalid characters");
+                System.out.println("Error, the maze will not be generated, there has been used invalid characters");
                 return false;
 
             }
@@ -36,7 +36,7 @@ public abstract class AbstractFindPathInputReader {
             }
         }
         if (!(startPositionCount==1) || !(targetPositionCount==1)) {
-            System.out.println("There is not valid amount of start or end position");
+            System.out.println("Error, the maze will not be generated,there is not valid amount of start or end position");
             return false;
         }
 

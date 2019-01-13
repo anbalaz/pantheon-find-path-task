@@ -24,6 +24,7 @@ public class MazeResolver {
     public void solveTheMaze(Maze maze) {
         maze.generateUsedPointsArray();
         maze.print();
+        System.out.println("Possible paths to finish maze:\n");
         findPath(maze.getStartPoint(), maze);
         printOutShortestPath();
     }
