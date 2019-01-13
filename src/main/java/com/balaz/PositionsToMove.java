@@ -4,6 +4,7 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class PositionsToMove {
+
     /**
      * This method looks for every possible moves from Point where it is currently pointing.
      */
@@ -23,7 +24,6 @@ public class PositionsToMove {
                 currPoint.y < 0 ||
                 currPoint.y > (maze.getColsCount() - 1) ||
                 maze.getUsedPoints()[currPoint.x][currPoint.y]));
-
         return points;
     }
 }

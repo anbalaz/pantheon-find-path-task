@@ -10,40 +10,11 @@ public class FindPathInputReaderStdIn extends AbstractFindPathInputReader {
     private Scanner scanner = new Scanner(System.in);
     private List<String> mazeStrings = new ArrayList<>();
 
-
-    public Maze createMaze() {
-
-        System.out.println("Welcome to maze resolver, please enter number of rows that maze is going to have, then press enter");
-        enterTheString(consoleInt());
-
-        boolean isValidationOk = validateMazeInput(mazeStrings);
-
-        if (!isValidationOk) {
-            return new Maze(0, 0);
-        }
-
-        int rowsCount = mazeStrings.size();
-        int colsCount = mazeStrings.get(0).length();
-
-        Maze maze = new Maze(rowsCount, colsCount);
-
-        for (int i = 0; i < rowsCount; i++) {
-            for (int j = 0; j < colsCount; j++) {
-                maze.setMazeField(i, j, mazeStrings.get(i).charAt(j));
-            }
-        }
-
-        return maze;
-    }
-
-
-    public int consoleInt() {
-
+    private int consoleInt() {
         boolean continueInput = true;
         int consoleIntInput = 0;
         do {
             try {
-
                 consoleIntInput = scanner.nextInt();
                 continueInput = false;
 
@@ -57,17 +28,17 @@ public class FindPathInputReaderStdIn extends AbstractFindPathInputReader {
         return consoleIntInput;
     }
 
-
-    public void enterTheString(int numberOfRepeats) {
+    private void enterTheString(int numberOfRepeats) {
         String mazeExplanationOfInput = String.format("There are couple of rules when inserting values into maze rows:\n" +
-                "1.There are allowed only 4 signs in maze: \n" +
-                "\tfree element: %s \n" +
-                "\tobstacle element: %s \n" +
-                "\tstarting position: %s \n" +
-                "\ttarget position: %s \n" +
-                "2.There has to be one and only one starting position and only one target position.\n" +
-                "3.When inserting values, please insert even number of signs into each row or the maze will not run.\n" +
-                "4.After every row, please press enter, thank you and enjoy!\n", MazeAllowedChar.FREE_ELEMENT, MazeAllowedChar.BLOCKED_ELEMENT, MazeAllowedChar.START_POSITION, MazeAllowedChar.TARGET_POSITION);
+                        "1.There are allowed only 4 signs in maze: \n" +
+                        "\tfree element: %s \n" +
+                        "\tobstacle element: %s \n" +
+                        "\tstarting position: %s \n" +
+                        "\ttarget position: %s \n" +
+                        "2.There has to be one and only one starting position and only one target position.\n" +
+                        "3.When inserting values, please insert even number of signs into each row or the maze will not run.\n" +
+                        "4.After every row, please press enter, thank you and enjoy!\n", MazeAllowedChar.FREE_ELEMENT,
+                MazeAllowedChar.BLOCKED_ELEMENT, MazeAllowedChar.START_POSITION, MazeAllowedChar.TARGET_POSITION);
 
         System.out.println(mazeExplanationOfInput);
 
@@ -78,9 +49,19 @@ public class FindPathInputReaderStdIn extends AbstractFindPathInputReader {
         }
     }
 
-
     private String consoleString() {
         return scanner.next();
     }
 
+    public Maze createMaze() {
+        System.out.println("Welcome to maze resolver, please enter number of rows that maze is going to have, then press enter");
+        enterTheString(consoleInt());
+
+        boolean isValidationOk = validateMazeInput(mazeStrings);
+        if (!isValidationOk) {
+            return new Maze(0, 0);
+        }
+
+        return super.parseListToArray(mazeStrings);
+    }
 }

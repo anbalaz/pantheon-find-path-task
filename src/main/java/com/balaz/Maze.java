@@ -33,12 +33,11 @@ public class Maze {
     }
 
     public void print() {
-        String mazeExplanation = String.format("Here is layout of the maze and meaning of signs:\n" +
+        String mazeExplanation = String.format("Here is a layout of the maze and meaning of signs:\n" +
                 "\tfree element: %s \n" +
                 "\tobstacle element: %s \n" +
                 "\tstarting position: %s \n" +
                 "\ttarget position: %s \n", MazeAllowedChar.FREE_ELEMENT, MazeAllowedChar.BLOCKED_ELEMENT, MazeAllowedChar.START_POSITION, MazeAllowedChar.TARGET_POSITION);
-
         System.out.println(mazeExplanation);
 
         for (char[] fields : maze) {
@@ -56,7 +55,6 @@ public class Maze {
     /**
      * Randomly giving 2 string constants.
      */
-
     public Point getStartPoint() {
         for (int i = 0; i < maze.length; i++) {
             for (int j = 0; j < maze[i].length; j++) {

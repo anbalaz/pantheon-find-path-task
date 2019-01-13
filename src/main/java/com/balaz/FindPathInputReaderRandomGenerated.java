@@ -7,10 +7,6 @@ public class FindPathInputReaderRandomGenerated extends AbstractFindPathInputRea
     private Random mazeRandomizer = new Random();
 
     public Maze createMaze(int rowsCount, int colsCount) {
-        return generateRandomly(rowsCount, colsCount);
-    }
-
-    public Maze generateRandomly(int rowsCount, int colsCount) {
         Maze maze = new Maze(rowsCount, colsCount);
 
         for (int i = 0; i < maze.getRowsCount(); i++) {
@@ -47,7 +43,7 @@ public class FindPathInputReaderRandomGenerated extends AbstractFindPathInputRea
         } else {
             field = MazeAllowedChar.BLOCKED_ELEMENT;
         }
-        return field;
 
+        return field;
     }
 }

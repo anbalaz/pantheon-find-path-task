@@ -11,7 +11,6 @@ public class MazeResolver {
 
     private PathToString pathResolver;
 
-
     public MazeResolver() {
         this.pathDirectionString = new ArrayList<>();
         this.allPossiblePaths = new ArrayList<>();
@@ -24,7 +23,7 @@ public class MazeResolver {
     public void solveTheMaze(Maze maze) {
         maze.generateUsedPointsArray();
         maze.print();
-        System.out.println("Possible paths to finish maze:\n");
+        System.out.println("\nPossible paths to finish maze:");
         findPath(maze.getStartPoint(), maze);
         printOutShortestPath();
     }
@@ -34,14 +33,13 @@ public class MazeResolver {
      */
     private void printOutShortestPath() {
         if (!allPossiblePaths.isEmpty()) {
-
             System.out.println("\nShortest path/s is/are:\n");
             sortListOfPossiblePathsByLength();
 
             allPossiblePaths.forEach(possiblePath -> {
                 if (possiblePath.size() == allPossiblePaths.get(0).size()) {
-                    possiblePath.forEach(a ->
-                            System.out.print(a + ",")
+                    possiblePath.forEach(path ->
+                            System.out.print(path + ",")
                     );
                     System.out.println();
                 }
@@ -72,14 +70,12 @@ public class MazeResolver {
         if (!pathDirectionString.isEmpty()) {
             pathDirectionString.remove(pathDirectionString.size() - 1);
         }
-
         maze.getUsedPoints()[sourcePoint.x][sourcePoint.y] = false;
     }
 
     private void sortListOfPossiblePathsByLength() {
         allPossiblePaths.sort(Comparator.comparingInt(ArrayList::size));
     }
-
 
     private boolean isPathSolved(Maze maze, Point sourcePoint) {
 
@@ -88,9 +84,7 @@ public class MazeResolver {
 
     private void printOutPathDirectionString() {
         System.out.println();
-
         pathDirectionString.forEach((pathDirection) -> System.out.print(pathDirection + ","));
-
         System.out.println();
     }
 }

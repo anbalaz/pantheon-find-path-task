@@ -12,7 +12,6 @@ public class PathToString {
     private static final String DIRECTION_UP = "u";
     private static final String DIRECTION_DOWN = "d";
 
-
     public String directionResolver(Point sourcePoint, Point movePoint) {
         String direction;
         Point subtractPoint = (subtract(sourcePoint, movePoint));

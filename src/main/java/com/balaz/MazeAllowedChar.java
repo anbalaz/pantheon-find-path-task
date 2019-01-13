@@ -13,5 +13,4 @@ public class MazeAllowedChar {
                 charToCheck == START_POSITION ||
                 charToCheck == TARGET_POSITION);
     }
-
 }

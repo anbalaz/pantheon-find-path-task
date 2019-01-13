@@ -10,8 +10,7 @@ public class FindPathInputReaderFile extends AbstractFindPathInputReader {
 
     private List<String> mazeStrings = new ArrayList<>();
 
-    public List<String> readFile(String nameOfFile) {
-
+    private List<String> readFile(String nameOfFile) {
         try {
             File file = new File(nameOfFile);
             Scanner scanner = new Scanner(file);
@@ -21,32 +20,19 @@ public class FindPathInputReaderFile extends AbstractFindPathInputReader {
                 line = scanner.nextLine();
                 mazeStrings.add(line);
             }
-            mazeStrings.forEach(System.out::println);
         } catch (FileNotFoundException exception) {
             System.out.println("The File was not found, please check if you put correct name or put it in the right directory");
         }
+
         return mazeStrings;
     }
 
     public Maze createMaze(String nameOfFile) {
 
         boolean isValidationOk = validateMazeInput(readFile(nameOfFile));
-
         if (!isValidationOk) {
             return new Maze(0, 0);
         }
-
-        int rowsCount = mazeStrings.size();
-        int colsCount = mazeStrings.get(0).length();
-
-        Maze maze = new Maze(rowsCount, colsCount);
-
-        for (int i = 0; i < rowsCount; i++) {
-            for (int j = 0; j < colsCount; j++) {
-                maze.setMazeField(i, j, mazeStrings.get(i).charAt(j));
-            }
-        }
-
-        return maze;
+        return super.parseListToArray(mazeStrings);
     }
 }
